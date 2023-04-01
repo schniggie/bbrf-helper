@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Update all URLs with full reponse in tag
 # Requirent: httpx, https://github.com/schniggie/httpx2bbrf
 
