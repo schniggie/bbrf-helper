@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Use regulator to generate/brute new subdomains
-# Requirent: https://github.com/cramppet/regulator, puredns
+# Generate/Brute new subdomains based on current assets
+# Requirements: https://github.com/cramppet/regulator, puredns
 # Blog: https://cramppet.github.io/regulator/index.html
 
 cd regulator
