@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fuzz URLs with afuzz and add all with status 200
-# Requirments: afuzz, jq
+# Requirements: afuzz, jq
 
 
 while read -r line; do afuzz -u $line; done < <(bbrf urls -r);
