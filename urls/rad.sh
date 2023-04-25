@@ -11,4 +11,4 @@ done < <(bbrf urls -r);
 cat rad/*.json | jq -r '.[] | select ( .Method | contains("GET") ) | .URL' | uro | grep -Eiv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg)" | httpx -include-response -json -silent | tee >(httpx2bbrf -s rad -t method:GET --show-new)
 # Import all POST Requests
 cat rad/*.json | jq -r '.[] | select ( .Method | contains("POST") ) | .URL +" "+ (.b64_body | @base64d)' | tee rad/post.req
-read -r url postbody; do httpx -include-response -json -silent -u $url -x POST -body $postbody | httpx2bbrf -s rad -t method:POST -t postbody:$postbody --append-tags --show-new; done < cat rad/post.req
+while read -r url postbody; do httpx -include-response -json -silent -u $url -x POST -body $postbody | httpx2bbrf -s rad -t method:POST -t postbody:$postbody --append-tags --show-new; done <rad/post.req
