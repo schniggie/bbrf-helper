@@ -9,4 +9,4 @@ done < <(bbrf urls -r);
 
 # Import tags and update 
 cat webanalyze/*.json  | jq -r '.hostname as $hostname | .matches[] | [.app.category_names[0], .app_name, .version] | select(length > 0) | [$hostname] + . | map( @sh ) | join(" ")' | tee webanalyze/webanalyze.tags
-read -r url cat app version; do httpx -include-response -json -silent -u $url | httpx2bbrf -t $cat:$app.$version --append-tags; done < cat webanalyze/webanalyze.tags
+read -r url cat app version; do httpx -include-response -json -silent -u $url | httpx2bbrf -t $cat:$app.$version --append-tags; done <webanalyze/webanalyze.tags
